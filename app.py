@@ -75,7 +75,7 @@ if uploaded:
             #     print("\n--- Output ---\n")
             #     return python_repl.run(code)
 
-    return msg.content
+    # return msg.content
 
 
 # 4️⃣ Example
