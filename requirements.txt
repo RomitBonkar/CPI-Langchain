@@ -1,0 +1,6 @@
+streamlit
+pandas
+matplotlib
+langchain
+langchain_groq
+groq
