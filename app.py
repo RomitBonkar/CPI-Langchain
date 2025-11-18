@@ -56,28 +56,23 @@ if uploaded:
 #     Use plt.show() to display graphs.
 #     """
 
-    # Ask LLM to produce Python code
-    msg = llm.invoke(
-        [
-            {"role": "system", "content": system},
-            {"role": "user", "content": prompt},
-        ]
-    )
-
-    # Handle tool call
-    if msg.tool_calls:
-        for call in msg.tool_calls:
-            python_repl.run(call["args"]["code"])
-            # if call["name"] == "python_repl":
-            #     code = call["args"]["code"]
-            #     print("\n--- Running Code ---\n")
-            #     print(code)
-            #     print("\n--- Output ---\n")
-            #     return python_repl.run(code)
+        # Ask LLM to produce Python code
+        msg = llm.invoke(
+            [
+                {"role": "system", "content": system},
+                {"role": "user", "content": prompt},
+            ]
+        )
+    
+        # Handle tool call
+        if msg.tool_calls:
+            for call in msg.tool_calls:
+                python_repl.run(call["args"]["code"])
+                # if call["name"] == "python_repl":
+                #     code = call["args"]["code"]
+                #     print("\n--- Running Code ---\n")
+                #     print(code)
+                #     print("\n--- Output ---\n")
+                #     return python_repl.run(code)
 
     # return msg.content
-
-
-# 4️⃣ Example
-if __name__ == "__main__":
-    generate_graph("Plot Year vs Food, F&V, and Sugar as a multi-line chart.")
