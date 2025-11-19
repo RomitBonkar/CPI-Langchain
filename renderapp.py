@@ -17,6 +17,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def home():
+    return {"status": "API is running"}
+
 # -------- Tool to execute Python + return plot ----------
 def fig_to_base64():
     """Convert current matplotlib figure to base64."""
@@ -53,7 +57,9 @@ async def generate_graph(file: UploadFile, prompt: str = Form(...)):
     global df
 
     # Load your dataset
-    df = pd.read_csv('CPI by Year.csv')
+    #df = pd.read_csv('CPI by Year.csv')
+    contents = await file.read()
+    df = pd.read_csv(io.BytesIO(contents))
 
     system = """
     You are a data visualization AI using matplotlib.
