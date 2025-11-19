@@ -58,7 +58,7 @@ async def generate_graph(prompt: str = Form(...)):
 
     # Load your dataset
     #df = pd.read_csv('CPI by Year.csv')
-    df = pd.read_csv("CPI by Year.csv")
+    
 
     system = """
     You are a data visualization AI using matplotlib.
