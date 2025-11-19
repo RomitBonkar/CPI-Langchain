@@ -38,6 +38,7 @@ def python_repl(code: str) -> str:
     Must call plt.show() in the code.
     """
     global df
+    df = pd.read_csv('CPI by Year.csv')
     local_vars = {"df": df, "plt": plt}
     try:
         exec(code, {}, local_vars)
