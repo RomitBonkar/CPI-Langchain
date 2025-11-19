@@ -7,3 +7,4 @@ groq
 fastapi
 uvicorn
 python-dotenv
+python-multipart
