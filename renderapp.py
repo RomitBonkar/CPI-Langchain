@@ -7,6 +7,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from langchain.tools import tool
 from langchain_groq import ChatGroq
 
+df = pd.read_csv("CPI by Year.csv")
+
 app = FastAPI()
 
 # Allow frontend apps to call this API
@@ -39,7 +41,11 @@ def python_repl(code: str) -> str:
     local_vars = {"df": df, "plt": plt}
     try:
         exec(code, {}, local_vars)
-        img_str = fig_to_base64()
+        # Convert figure to base64
+        buf = io.BytesIO()
+        plt.savefig(buf, format="png", bbox_inches="tight")
+        buf.seek(0)
+        img_str = base64.b64encode(buf.read()).decode("utf-8")
         plt.clf()
         return img_str
     except Exception as e:
@@ -57,8 +63,7 @@ async def generate_graph(prompt: str = Form(...)):
     global df
 
     # Load your dataset
-    #df = pd.read_csv('CPI by Year.csv')
-    
+    df = pd.read_csv('CPI by Year.csv')
 
     system = """
     You are a data visualization AI using matplotlib.
