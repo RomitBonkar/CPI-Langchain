@@ -53,13 +53,12 @@ llm = ChatGroq(
 
 # --------- API Endpoint -----------
 @app.post("/generate-graph")
-async def generate_graph(file: UploadFile, prompt: str = Form(...)):
+async def generate_graph(prompt: str = Form(...)):
     global df
 
     # Load your dataset
     #df = pd.read_csv('CPI by Year.csv')
-    contents = await file.read()
-    df = pd.read_csv(io.BytesIO(contents))
+    df = pd.read_csv("CPI by Year.csv")
 
     system = """
     You are a data visualization AI using matplotlib.

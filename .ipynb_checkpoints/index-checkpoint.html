@@ -95,9 +95,6 @@
 <div class="container">
     <h2>AI Graph Generator</h2>
 
-    <label>Select CSV File</label>
-    <input type="file" id="csvFile" accept=".csv">
-
     <label>Enter your prompt</label>
     <textarea id="prompt" rows="4" placeholder="E.g., Plot Year vs CPI"></textarea>
 
@@ -111,22 +108,20 @@
 
 <script>
 async function generateGraph() {
-    const fileInput = document.getElementById("csvFile");
     const prompt = document.getElementById("prompt").value;
     const output = document.getElementById("output");
     const codeBox = document.getElementById("codeBox");
 
-    if (!fileInput.files.length) {
-        alert("Please upload a CSV file.");
+    if (!prompt) {
+        alert("Please enter a prompt.");
         return;
     }
 
-    const formData = new FormData();
-    formData.append("file", fileInput.files[0]);
-    formData.append("prompt", prompt);
-
     output.innerHTML = "<p>Generating graph...</p>";
     codeBox.style.display = "none";
+
+    const formData = new FormData();
+    formData.append("prompt", prompt);
 
     try {
         const res = await fetch("https://cpi-langchain.onrender.com/generate-graph", {
