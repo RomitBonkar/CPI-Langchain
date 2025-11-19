@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Graph Generator</title>
-
 <style>
     body {
         font-family: "Segoe UI", sans-serif;
@@ -91,7 +90,6 @@
     }
 </style>
 </head>
-
 <body>
 
 <div class="container">
@@ -101,7 +99,7 @@
     <input type="file" id="csvFile" accept=".csv">
 
     <label>Enter your prompt</label>
-    <textarea id="prompt" rows="4" placeholder="E.g., Create a line chart of Year vs CPI"></textarea>
+    <textarea id="prompt" rows="4" placeholder="E.g., Plot Year vs CPI"></textarea>
 
     <button onclick="generateGraph()">Generate Graph</button>
 
@@ -151,7 +149,7 @@ async function generateGraph() {
 
 function toggleCode() {
     const box = document.getElementById("codeBox");
-    box.style.display = box.style.display === "none" ? "block": "none";
+    box.style.display = box.style.display === "none" ? "block" : "none";
 }
 </script>
 
