@@ -14,7 +14,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["*"],
-    allows_headers=["*"],
+    allow_headers=["*"],
 )
 
 # -------- Tool to execute Python + return plot ----------
